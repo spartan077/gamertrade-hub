@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { FeaturedSection } from "@/components/FeaturedSection";
 import { Button } from "@/components/ui/button";
-import { GameController, Monitor, Cpu } from "lucide-react";
+import { Gamepad, Monitor, Cpu } from "lucide-react";
 
 const Index = () => {
   return (
@@ -20,7 +20,7 @@ const Index = () => {
             </p>
             <div className="flex flex-wrap gap-4">
               <Button size="lg" className="gap-2">
-                <GameController className="w-5 h-5" />
+                <Gamepad className="w-5 h-5" />
                 Start Selling
               </Button>
               <Button size="lg" variant="secondary" className="gap-2">
@@ -36,7 +36,7 @@ const Index = () => {
         <h2 className="text-2xl font-bold mb-8">Browse Categories</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { icon: GameController, title: "Games", desc: "New & used video games" },
+            { icon: Gamepad, title: "Games", desc: "New & used video games" },
             { icon: Monitor, title: "Consoles", desc: "Gaming consoles & accessories" },
             { icon: Cpu, title: "PC Parts", desc: "Computer components & peripherals" },
           ].map(({ icon: Icon, title, desc }) => (
