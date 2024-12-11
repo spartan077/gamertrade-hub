@@ -7,6 +7,10 @@ import { SessionContextProvider } from "@supabase/auth-helpers-react";
 import { supabase } from "@/integrations/supabase/client";
 import Index from "./pages/Index";
 import AuthPage from "./pages/Auth";
+import Games from "./pages/Games";
+import Consoles from "./pages/Consoles";
+import PcParts from "./pages/PcParts";
+import Sell from "./pages/Sell";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +24,10 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<AuthPage />} />
+            <Route path="/games" element={<Games />} />
+            <Route path="/consoles" element={<Consoles />} />
+            <Route path="/pc-parts" element={<PcParts />} />
+            <Route path="/sell" element={<Sell />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

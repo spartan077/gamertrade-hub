@@ -1,7 +1,7 @@
 import { Search, ShoppingCart, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { toast } from "sonner";
 
@@ -24,14 +24,14 @@ export const Navbar = () => {
     <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
-          <a href="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <span className="text-xl font-bold text-secondary">GamersHub</span>
             <span className="text-accent">India</span>
-          </a>
+          </Link>
           <div className="hidden md:flex items-center gap-4">
-            <a href="/games" className="nav-link">Games</a>
-            <a href="/consoles" className="nav-link">Consoles</a>
-            <a href="/pc-parts" className="nav-link">PC Parts</a>
+            <Link to="/games" className="nav-link">Games</Link>
+            <Link to="/consoles" className="nav-link">Consoles</Link>
+            <Link to="/pc-parts" className="nav-link">PC Parts</Link>
           </div>
         </div>
         
@@ -46,6 +46,11 @@ export const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-4">
+          {session && (
+            <Button variant="secondary" onClick={() => navigate("/sell")}>
+              Start Selling
+            </Button>
+          )}
           <Button variant="ghost" size="icon" className="relative">
             <ShoppingCart className="h-5 w-5" />
             <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-accent text-[10px] font-medium">
