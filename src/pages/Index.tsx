@@ -1,9 +1,39 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSession } from "@supabase/auth-helpers-react";
+import { useQuery } from "@tanstack/react-query";
 import { Navbar } from "@/components/Navbar";
 import { FeaturedSection } from "@/components/FeaturedSection";
 import { Button } from "@/components/ui/button";
 import { Gamepad, Monitor, Cpu } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
+  const session = useSession();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!session) {
+      navigate("/auth");
+    }
+  }, [session, navigate]);
+
+  const { data: products } = useQuery({
+    queryKey: ["featured-products"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .limit(4)
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  if (!session) return null;
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -55,7 +85,7 @@ const Index = () => {
         </div>
       </section>
 
-      <FeaturedSection />
+      <FeaturedSection products={products || []} />
     </div>
   );
 };

@@ -1,8 +1,25 @@
-import { Search, ShoppingCart, User } from "lucide-react";
+import { Search, ShoppingCart, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useNavigate } from "react-router-dom";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { toast } from "sonner";
 
 export const Navbar = () => {
+  const session = useSession();
+  const supabase = useSupabaseClient();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    toast.success("Signed out successfully");
+    navigate("/auth");
+  };
+
+  const handleAuthClick = () => {
+    navigate("/auth");
+  };
+
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -35,10 +52,17 @@ export const Navbar = () => {
               0
             </span>
           </Button>
-          <Button variant="secondary">
-            <User className="mr-2 h-4 w-4" />
-            Sign In
-          </Button>
+          {session ? (
+            <Button variant="destructive" onClick={handleSignOut}>
+              <LogOut className="mr-2 h-4 w-4" />
+              Sign Out
+            </Button>
+          ) : (
+            <Button variant="secondary" onClick={handleAuthClick}>
+              <User className="mr-2 h-4 w-4" />
+              Sign In
+            </Button>
+          )}
         </div>
       </div>
     </nav>
