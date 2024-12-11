@@ -9,6 +9,27 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      admin_settings: {
+        Row: {
+          created_at: string
+          id: string
+          payment_gateway: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          payment_gateway?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          payment_gateway?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       bids: {
         Row: {
           amount: number
@@ -59,6 +80,7 @@ export type Database = {
           id: string
           images: string[] | null
           is_bidding: boolean | null
+          is_visible: boolean | null
           price: number
           seller_id: string | null
           status: string | null
@@ -75,6 +97,7 @@ export type Database = {
           id?: string
           images?: string[] | null
           is_bidding?: boolean | null
+          is_visible?: boolean | null
           price: number
           seller_id?: string | null
           status?: string | null
@@ -91,6 +114,7 @@ export type Database = {
           id?: string
           images?: string[] | null
           is_bidding?: boolean | null
+          is_visible?: boolean | null
           price?: number
           seller_id?: string | null
           status?: string | null
@@ -114,6 +138,8 @@ export type Database = {
           full_name: string | null
           gaming_preferences: Json | null
           id: string
+          is_admin: boolean | null
+          is_verified: boolean | null
           updated_at: string
           username: string | null
         }
@@ -123,6 +149,8 @@ export type Database = {
           full_name?: string | null
           gaming_preferences?: Json | null
           id: string
+          is_admin?: boolean | null
+          is_verified?: boolean | null
           updated_at?: string
           username?: string | null
         }
@@ -132,6 +160,8 @@ export type Database = {
           full_name?: string | null
           gaming_preferences?: Json | null
           id?: string
+          is_admin?: boolean | null
+          is_verified?: boolean | null
           updated_at?: string
           username?: string | null
         }
@@ -142,6 +172,9 @@ export type Database = {
           created_at: string
           end_date: string
           id: string
+          max_listing_price: number | null
+          max_listings: number
+          price: number
           seller_id: string | null
           start_date: string
           subscription_type: string
@@ -150,6 +183,9 @@ export type Database = {
           created_at?: string
           end_date: string
           id?: string
+          max_listing_price?: number | null
+          max_listings?: number
+          price?: number
           seller_id?: string | null
           start_date?: string
           subscription_type: string
@@ -158,6 +194,9 @@ export type Database = {
           created_at?: string
           end_date?: string
           id?: string
+          max_listing_price?: number | null
+          max_listings?: number
+          price?: number
           seller_id?: string | null
           start_date?: string
           subscription_type?: string

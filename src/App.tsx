@@ -11,6 +11,7 @@ import Games from "./pages/Games";
 import Consoles from "./pages/Consoles";
 import PcParts from "./pages/PcParts";
 import Sell from "./pages/Sell";
+import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/consoles" element={<Consoles />} />
             <Route path="/pc-parts" element={<PcParts />} />
             <Route path="/sell" element={<Sell />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
